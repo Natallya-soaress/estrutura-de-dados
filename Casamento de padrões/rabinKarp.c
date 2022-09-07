@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h> 
 #include <sys/time.h>
+
+#define d 256
 
 float timedifference_msec(struct timeval t0, struct timeval t1){
     return (t1.tv_sec - t0.tv_sec) * 1000.0f + (t1.tv_usec - t0.tv_usec) / 1000.0f;
 }
-
-#define d 256
 
 void search(char pat[], char txt[], int q)
 {
@@ -46,30 +47,33 @@ void search(char pat[], char txt[], int q)
 	}
 }
 
-int main()
-{
+int main(){
 
-	struct timeval t0;
-  	struct timeval t1;
+  struct timeval t0;
+  struct timeval t1;
 	float elapsed;
-	int q = 101; 
+  char vet[10000];
+  int q = 101;
 
-	
-	char txt[] = "AAAAAAAAAAAAAAAA";
-	char pat[] = "AAAA"; 
+  
+  for(int i=0; i < 10000; i++)
+   vet[i] = 'A' + (char)(rand()%26); 
 
-	/*
-	char txt[] = "AABAACAADAABAABA";
-	char pat[] = "AABA"; */
+  char pat[] = "AFHIJLESAACJKSLI"; 
+  
+  /*
+  for(int i=0; i < 10000; i++)
+    vet[i] = 'A';
 
-	gettimeofday(&t0, 0);
-  	search(pat, txt, q);
-  	gettimeofday(&t1, 0);
+	char pat[] = "AAAAAAAAAAAAAAAA"; */
 
-  	elapsed = timedifference_msec(t0, t1);
+  gettimeofday(&t0, 0);
+  search(vet, pat, q);
+  gettimeofday(&t1, 0);
 
-  	printf("Code executed in %f milliseconds.\n", elapsed);
+  elapsed = timedifference_msec(t0, t1);
 
-	
-	return 0;
+  printf("Code executed in %f milliseconds.\n", elapsed);
+
+  return 0;
 }
