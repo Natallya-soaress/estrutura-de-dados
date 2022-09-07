@@ -43,28 +43,32 @@ void search(char pat[], char txt[])
 	}
 }
 
-int main()
-{
+int main(){
 
-	struct timeval t0;
-  	struct timeval t1;
+  struct timeval t0;
+  struct timeval t1;
 	float elapsed;
+  char vet[10000];
 
-	
-	char txt[] = "AAAAAAAAAAAAAAAA";
-	char pat[] = "AAAA"; 
+  /*
+  for(int i=0; i < 10000; i++)
+   vet[i] = 'A' + (char)(rand()%26); 
 
-	/*
-	char txt[] = "AABAACAADAABAABA";
-	char pat[] = "AABA"; */
+  char pat[] = "AFHIJLESAACJKSLI"; */
+  
+  
+  for(int i=0; i < 10000; i++)
+    vet[i] = 'A';
 
-	gettimeofday(&t0, 0);
-  	search(pat, txt);
-  	gettimeofday(&t1, 0);
+	char pat[] = "AAAAAAAAAAAAAAAA"; 
 
-  	elapsed = timedifference_msec(t0, t1);
+  gettimeofday(&t0, 0);
+  search(vet, pat);
+  gettimeofday(&t1, 0);
 
-  	printf("Code executed in %f milliseconds.\n", elapsed);
-        
-	return 0;
+  elapsed = timedifference_msec(t0, t1);
+
+  printf("Code executed in %f milliseconds.\n", elapsed);
+
+  return 0;
 }
