@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h> 
 #include <sys/time.h>
 
 float timedifference_msec(struct timeval t0, struct timeval t1){
@@ -18,32 +19,37 @@ void ForcaBruta(char T[], char P[]){
             j++;k++;
         }
         if (j > m){
-            printf("Casamento na posicao%3ld\n", i-1);
+            printf("Casamento na posicao %d\n", i-1);
         }
     }
  } 
 
 int main(){
 
-    struct timeval t0;
-  	struct timeval t1;
+  struct timeval t0;
+  struct timeval t1;
 	float elapsed;
+  char vet[10000];
 
-	/*
-	char txt[] = "AAAAAAAAAAAAAAAA";
-	char pat[] = "AAAA"; */
+  /*
+  for(int i=0; i < 10000; i++)
+   vet[i] = 'A' + (char)(rand()%26); 
 
-    
-    char txt[] = "AABAACAADAABAABA";
-	char pat[] = "AABA"; 
+  char pat[] = "AFHIJLESAACJKSLI"; */
+  
+  
+  for(int i=0; i < 10000; i++)
+    vet[i] = 'A';
+
+	char pat[] = "AAAAAAAAAAAAAAAA"; 
 
     gettimeofday(&t0, 0);
-  	ForcaBruta(txt, pat);
-  	gettimeofday(&t1, 0);
+    ForcaBruta(vet, pat);
+    gettimeofday(&t1, 0);
 
-  	elapsed = timedifference_msec(t0, t1);
+    elapsed = timedifference_msec(t0, t1);
 
-  	printf("Code executed in %f milliseconds.\n", elapsed);
+    printf("Code executed in %f milliseconds.\n", elapsed);
 
     return 0;
 }
